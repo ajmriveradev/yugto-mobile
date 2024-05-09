@@ -1,31 +1,99 @@
 import { View, Text, ScrollView, Image } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { images } from "../../constants";
 import FormField from '../../components/FormField';
 import CustomButton from "../../components/CustomButton";
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { useGlobalContext } from '../context/GlobalProvider';
+import { signUp } from '../services/utils';
 
 const SignUp = () => {
+  const { setUser } = useGlobalContext();
   const [form, setForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
+    "email": "amrivera3@up.edu.ph",
+    "password": "a",
+    "confirmPassword": "a",
+    "firstName": "Andrei", 
+    "lastName": "Rivera", 
+    "phone": "09565210653", 
+    "birthDate": "1998-12-07",
+    "isParent": true, 
+    "isMedicalProfessional": false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSignUpSubmit = async () => {
+    setIsSubmitting(true);
+
+    if (!form.email || !form.password || !form.confirmPassword || !form.firstName || !form.lastName || !form.phone || !form.birthDate) {
+      Alert.alert("Error", "Please fill in the required fields");
+    }
+
+    try {
+      const result = await signUp(form);
+      
+      console.log("SIGN UP - RESULT: ", result);
+
+      if (result) { 
+        setUser(result);
+        router.replace("/home");
+      }
+    } catch (error) {
+      console.error(`SignUp: ERROR = ${error}`);
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
         <View className="w-full justify-center min-h-[92vh] px-4 my-6">
-          <Image
-            source={images.logo}
-            resizeMode="contain"
-            className="w-[115px] h-[35px]"
+          <Text className="text-3xl text-white text-bold mt-10 font-pbold text-center">Yugto!</Text>
+
+          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign Up to Yugto</Text>
+
+          <FormField 
+            title="First Name"
+            value={form.firstName}
+            handleChangeText={(e) => {
+              setForm({ ...form, firstName: e })
+            }}
+            otherStyles="mt-10"
+            keyboardType="first-name"
           />
 
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign Up to Aora</Text>
+          <FormField 
+            title="Last Name"
+            value={form.lastName}
+            handleChangeText={(e) => {
+              setForm({ ...form, lastName: e })
+            }}
+            otherStyles="mt-10"
+            keyboardType="last-name"
+          />
+
+          <FormField 
+            title="Phone"
+            value={form.phone}
+            handleChangeText={(e) => {
+              setForm({ ...form, phone: e })
+            }}
+            otherStyles="mt-10"
+            keyboardType="phone"
+          />
+          
+          <FormField 
+            title="Birth Date"
+            value={form.birthDate}
+            handleChangeText={(e) => {
+              setForm({ ...form, birthDate: e })
+            }}
+            otherStyles="mt-10"
+            keyboardType="birth-date"
+          />
 
           <FormField 
             title="Email"
@@ -57,7 +125,7 @@ const SignUp = () => {
 
           <CustomButton 
             title="Sign Up"
-            handlePress={ () => { setIsSubmitting(true) }}
+            handlePress={ () => { handleSignUpSubmit() }}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />

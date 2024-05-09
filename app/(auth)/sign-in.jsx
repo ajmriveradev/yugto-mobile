@@ -1,28 +1,48 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-
 import { images } from "../../constants";
 import FormField from '../../components/FormField';
 import CustomButton from "../../components/CustomButton";
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
+import { useGlobalContext } from '../context/GlobalProvider';
+import { signIn } from '../services/utils';
 
 const SignIn = () => {
+  const { setUser } = useGlobalContext();
   const [form, setForm] = useState({
-    email: "",
-    password: ""
+    email: "amrivera3@up.edu.ph",
+    password: "a"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSignInSubmit = async () => {
+    setIsSubmitting(true);
+
+    if (!form.email || !form.password) {
+      Alert.alert("Error", "Please fill in the required fields");
+    }
+
+    try {
+      const result = await signIn(form);
+
+      if (result) { 
+        setUser(result);
+        router.replace("/home");
+      }
+    } catch (error) {
+      console.error(`SignIn: ERROR = ${error}`);
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
         <View className="w-full justify-center min-h-[90vh] px-4 my-6">
-          <Image
-            source={images.logo}
-            resizeMode="contain"
-            className="w-[115px] h-[35px]"
-          />
+          <Text className="text-3xl text-white text-bold mt-10 font-pbold text-center">Yugto!</Text>
 
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log In to Aora</Text>
 
@@ -47,7 +67,7 @@ const SignIn = () => {
 
           <CustomButton 
             title="Log In"
-            handlePress={ () => { setIsSubmitting(true) }}
+            handlePress={ () => { handleSignInSubmit() }}
             containerStyles="mt-7"
             isLoading={isSubmitting}
           />
