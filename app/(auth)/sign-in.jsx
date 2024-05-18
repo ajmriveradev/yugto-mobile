@@ -6,13 +6,13 @@ import FormField from '../../components/FormField';
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from 'expo-router';
 import { useGlobalContext } from '../context/GlobalProvider';
-import { signIn } from '../services/utils';
+import { signIn } from '../services/auth';
 
 const SignIn = () => {
   const { setUser } = useGlobalContext();
   const [form, setForm] = useState({
-    email: "amrivera3@up.edu.ph",
-    password: "a"
+    email: "ajmr@test.com",
+    password: "secret"
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -26,9 +26,11 @@ const SignIn = () => {
     try {
       const result = await signIn(form);
 
-      if (result) { 
-        setUser(result);
+      if (result.data) { 
+        setUser(result.data);
         router.replace("/home");
+      } else {
+        Alert.alert("Warning", result.message)
       }
     } catch (error) {
       console.error(`SignIn: ERROR = ${error}`);
@@ -44,7 +46,7 @@ const SignIn = () => {
         <View className="w-full justify-center min-h-[90vh] px-4 my-6">
           <Text className="text-3xl text-white text-bold mt-10 font-pbold text-center">Yugto!</Text>
 
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log In to Aora</Text>
+          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Log In to Yugto</Text>
 
           <FormField 
             title="Email"

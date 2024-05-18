@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from 'react-native'
+import { View, Text, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from "../../constants";
@@ -6,7 +6,7 @@ import FormField from '../../components/FormField';
 import CustomButton from "../../components/CustomButton";
 import { Link, router } from 'expo-router';
 import { useGlobalContext } from '../context/GlobalProvider';
-import { signUp } from '../services/utils';
+import { signUp } from '../services/auth';
 
 const SignUp = () => {
   const { setUser } = useGlobalContext();
@@ -35,9 +35,11 @@ const SignUp = () => {
       
       console.log("SIGN UP - RESULT: ", result);
 
-      if (result) { 
-        setUser(result);
+      if (result.data) { 
+        setUser(result.data);
         router.replace("/home");
+      } else {
+        Alert.alert("Warning", result.message)
       }
     } catch (error) {
       console.error(`SignUp: ERROR = ${error}`);

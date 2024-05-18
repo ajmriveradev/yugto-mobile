@@ -51,45 +51,45 @@ const TabsLayout = () => {
           }}
         />
         <Tabs.Screen
-          name="bookmark"
+          name="children"
           options={{
-            title: "Bookmark",
+            title: "Children",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon 
                 icon={icons.bookmark}
                 color={color}
-                name="Bookmark"
+                name="Children"
                 focused={focused}
               />
             )
           }}
         />
         <Tabs.Screen
-          name="create"
+          name="vaccinations"
           options={{
-            title: "Create",
+            title: "Vaccinations",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon 
                 icon={icons.plus}
                 color={color}
-                name="Create"
+                name="Vaccinations"
                 focused={focused}
               />
             )
           }}
         />
         <Tabs.Screen
-          name="profile"
+          name="settings"
           options={{
-            title: "Profile",
+            title: "Settings",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon 
                 icon={icons.profile}
                 color={color}
-                name="Profile"
+                name="Settings"
                 focused={focused}
               />
             )

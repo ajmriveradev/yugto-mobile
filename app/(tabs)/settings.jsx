@@ -1,9 +1,9 @@
-import { View, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { useGlobalContext } from '../context/GlobalProvider'
+import { useGlobalContext } from '../context/GlobalProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Home = () => {
+const Settings = () => {
   const { user } = useGlobalContext();
 
   return (
@@ -21,4 +21,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Settings
