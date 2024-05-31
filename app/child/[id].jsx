@@ -108,9 +108,9 @@ const Child = () => {
           // }}
         >
           <Text className="text-2xl text-black text-semibold mt-3 font-pregular">{value.title}</Text>
-          <Text className="text-lg text-black text-semibold mt-3 font-pregular">{value.value}</Text>
+          <Text className="text-lg text-black text-semibold mt-3 font-pregular">{child.first_name}'s {value.title.toLowerCase()}: {value.value}</Text>
           { value.whoAverage && 
-            <Text className="text-lg text-black text-semibold mt-3 font-pregular">{value.whoAverage}</Text> 
+            <Text className="text-lg text-black text-semibold mt-3 font-pregular">WHO Average {value.title.toLowerCase()}: {value.whoAverage}</Text> 
           }
         </TouchableOpacity>
       </View>
@@ -161,7 +161,7 @@ const Child = () => {
       tabLabel: 'Dashboard',
       component: ({index, ...props}) => {
         return (
-          <View className="h-full mx-4 my-6">
+          <View className="h-full mx-4 my-6 overflow-y-auto">
             <Text className="text-3xl text-black text-semibold font-psemibold">Dashboard</Text>
             {
               !!child &&

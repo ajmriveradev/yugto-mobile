@@ -7,7 +7,7 @@ const Home = () => {
   const { user } = useGlobalContext();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-slate-100">
       <Text className="text-3xl text-black text-semibold mt-5 ml-3 font-psemibold">Welcome {user.first_name}!</Text>
 
       <View className="ml-3">

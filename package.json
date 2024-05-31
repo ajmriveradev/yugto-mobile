@@ -11,10 +11,10 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
     "axios": "^1.6.8",
-    "expo": "^51.0.1",
-    "expo-constants": "~16.0.1",
+    "expo": "~51.0.9",
+    "expo-constants": "~16.0.2",
     "expo-linking": "~6.3.1",
-    "expo-router": "~3.5.11",
+    "expo-router": "~3.5.14",
     "expo-secure-store": "~13.0.1",
     "expo-status-bar": "~1.12.1",
     "moment": "^2.30.1",
