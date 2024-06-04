@@ -28,7 +28,10 @@ const Children = () => {
     const child = item.item;
 
     return (
-      <View>
+      <View className="flex flex-row justify-between items-center bg-sky-500 mx-2 my-3 rounded-2xl drop-shadow-xl shadow-2xl">
+        <View className="my-5 ml-3 mr-5">
+          <Text className="text-2xl ml-2 text-slate-50 text-semibold font-psemibold">{child.first_name} {child.last_name}</Text>
+        </View>
         <TouchableOpacity
           onPress={ () => {
             router.push({
@@ -36,19 +39,19 @@ const Children = () => {
               params: { id: child.id }
             })
           }}
+          className={`bg-slate-100 mr-4 rounded-xl h-12 w-16 justify-center items-center`}
         >
-          <Text className="text-lg text-black text-semibold mt-3 font-pregular">{`\u2022`} {child.first_name} {child.last_name}</Text>
+          <Text className={`text-emerald-600 font-psemibold text-lg mt-1`}>
+            View
+          </Text>
         </TouchableOpacity>
       </View>
     )
   }
 
   return (
-    <SafeAreaView>
-      <Text className="text-3xl text-black text-semibold mt-5 ml-3 font-psemibold">Welcome {user.first_name}!</Text>
-
-      <View className="ml-3">
-        <Text className="text-2xl text-black text-semibold mt-10 font-psemibold">Children</Text>
+    <SafeAreaView className="flex flex-col justify-between h-full">
+      <View className="mx-3 mt-3">
         {
           !!children &&
           <FlatList
@@ -57,6 +60,19 @@ const Children = () => {
             keyExtractor={ (item) => item.id}
           />
         }
+      </View>
+      <View className="flex flex-row justify-end">
+        <TouchableOpacity
+          onPress={ () => {
+            router.push({
+              pathname: "/child/create",
+            })
+          }}
+        >
+          <View className="bg-sky-600 w-16 h-16 mb-5 mr-5 rounded-full flex flex-row justify-center items-center drop-shadow-2xl shadow-2xl">
+            <Text className="text-slate-100 font-bold text-6xl mt-2">+</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   )

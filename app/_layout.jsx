@@ -48,6 +48,9 @@ const RootLayout = () => {
         <Stack.Screen name="child/[id]" options={{
           headerShown: false,
         }}/>
+        <Stack.Screen name="child/create" options={{
+          headerShown: false,
+        }}/>
       </Stack>
     </GlobalProvider>
   )

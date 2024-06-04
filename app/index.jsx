@@ -14,7 +14,7 @@ export default function App() {
     return <Redirect href="/home" />
   }
   return (
-    <SafeAreaView className="bg-sky-700 h-full">
+    <SafeAreaView className="bg-sky-500 h-full">
       <ScrollView contentContainerStyle={{ height: '100%'}}>
         <View className='w-full justify-center items-center min-h-[85vh] px-4'>
           <Text className="text-6xl text-white font-bold text-center">YUGTO</Text>
