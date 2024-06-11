@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useGlobalContext } from '../context/GlobalProvider'
 import CustomButton from '../../components/CustomButton'
 import moment from 'moment'
+import { router } from 'expo-router'
 
 const Home = () => {
   const { user } = useGlobalContext();
@@ -17,24 +18,28 @@ const Home = () => {
 
   const vaccinationData = [
     {
+      "id": 1,
       "vaccination_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
       "vaccine_name": "Measles",
     },
     {
+      "id": 2,
       "vaccination_date": "07-21-2024",
       "first_name": "Peachy",
       "last_name": "Gonzales",
       "vaccine_name": "Varicella",
     },
     {
+      "id": 3,
       "vaccination_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
       "vaccine_name": "Chickenpox",
     },
     {
+      "id": 4,
       "vaccination_date": "07-21-2024",
       "first_name": "Rudolf",
       "last_name": "Gonzales",
@@ -48,11 +53,11 @@ const Home = () => {
         <View className={`bg-sky-500 my-2 p-3 rounded-xl drop-shadow-2xl shadow-2xl`} key={index}>
           <TouchableOpacity
             onPress={ () => {
-              // router.push({
-              //   pathname: "/child/[id]",
-              //   params: { id: child.id }
-              // })
-              console.log("CONSULTATION DATA ID: ", vaccination.id);
+              router.push({
+                pathname: "/vaccinations/[id]",
+                params: { id: vaccination.id }
+              })
+              console.log("VACCINATION DATA ID: ", vaccination.id);
             }}
           >
             <View className="flex flex-row justify-between">
@@ -68,6 +73,7 @@ const Home = () => {
 
   const consultationData = [
     {
+      "id": 0,
       "consultation_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
@@ -75,6 +81,7 @@ const Home = () => {
       "medical_professional_name": "April Closa, RND"
     },
     {
+      "id": 1,
       "consultation_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
@@ -82,6 +89,7 @@ const Home = () => {
       "medical_professional_name": "Joan Quinones, MD"
     },
     {
+      "id": 2,
       "consultation_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
@@ -89,6 +97,7 @@ const Home = () => {
       "medical_professional_name": "Alex Misanggi, RND"
     },
     {
+      "id": 3,
       "consultation_date": "07-21-2024",
       "first_name": "Tofu",
       "last_name": "Gonzales",
@@ -104,10 +113,10 @@ const Home = () => {
           <View className={`${consultation.exam_type === "Nutrition" ? 'bg-sky-500' : 'bg-emerald-500'} my-2 p-3 rounded-xl drop-shadow-2xl shadow-2xl`} key={index}>
             <TouchableOpacity
               onPress={ () => {
-                // router.push({
-                //   pathname: "/child/[id]",
-                //   params: { id: child.id }
-                // })
+                router.push({
+                  pathname: "/consultation/[id]",
+                  params: { id: consultation.id }
+                })
                 console.log("CONSULTATION DATA ID: ", consultation.id);
               }}
             >

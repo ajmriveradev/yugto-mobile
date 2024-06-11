@@ -53,9 +53,7 @@ const SignUp = () => {
     <SafeAreaView className="bg-sky-600 h-full">
       <ScrollView>
         <View className="w-full justify-center min-h-[92vh] px-4 my-6">
-          <Text className="text-3xl text-white text-bold mt-10 font-pbold text-center">Yugto!</Text>
-
-          <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign Up to Yugto</Text>
+          <Text className="text-3xl text-white font-bold mt-2 font-roboto">Sign Up to Yugto</Text>
 
           <FormField 
             title="First Name"
@@ -63,7 +61,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, firstName: e })
             }}
-            otherStyles="mt-10"
+            otherStyles="mt-5"
             keyboardType="first-name"
           />
 
@@ -73,7 +71,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, lastName: e })
             }}
-            otherStyles="mt-10"
+            otherStyles="mt-5"
             keyboardType="last-name"
           />
 
@@ -83,7 +81,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, phone: e })
             }}
-            otherStyles="mt-10"
+            otherStyles="mt-5"
             keyboardType="phone"
           />
           
@@ -93,7 +91,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, birthDate: e })
             }}
-            otherStyles="mt-10"
+            otherStyles="mt-5"
             keyboardType="birth-date"
           />
 
@@ -103,7 +101,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, email: e })
             }}
-            otherStyles="mt-10"
+            otherStyles="mt-5"
             keyboardType="email-address"
           />
 
@@ -113,7 +111,7 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, password: e })
             }}
-            otherStyles="mt-7"
+            otherStyles="mt-5"
           />
 
           <FormField 
@@ -122,13 +120,13 @@ const SignUp = () => {
             handleChangeText={(e) => {
               setForm({ ...form, confirmPassword: e })
             }}
-            otherStyles="mt-7"
+            otherStyles="mt-5"
           />
 
           <CustomButton 
             title="Sign Up"
             handlePress={ () => { handleSignUpSubmit() }}
-            containerStyles="mt-7"
+            containerStyles="mt-8"
             isLoading={isSubmitting}
           />
 

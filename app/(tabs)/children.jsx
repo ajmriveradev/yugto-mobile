@@ -9,6 +9,7 @@ const Children = () => {
   const pathname = usePathname();
   const { user } = useGlobalContext();
   const [children, setChildren] = useState(null);
+  const [deleteHold, setDeleteHold] = useState(-1);
 
   useEffect( () => {
     async function getChildren() {
@@ -26,12 +27,10 @@ const Children = () => {
 
   const ChildItem = (item) => {
     const child = item.item;
+    const itemId = child.id;
 
     return (
-      <View className="flex flex-row justify-between items-center bg-sky-500 mx-2 my-3 rounded-2xl drop-shadow-xl shadow-2xl">
-        <View className="my-5 ml-3 mr-5">
-          <Text className="text-2xl ml-2 text-slate-50 text-semibold font-psemibold">{child.first_name} {child.last_name}</Text>
-        </View>
+      <View className="flex flex-row justify-between items-center bg-sky-500 mx-2 my-3 rounded-xl drop-shadow-xl shadow-2xl">
         <TouchableOpacity
           onPress={ () => {
             router.push({
@@ -39,11 +38,20 @@ const Children = () => {
               params: { id: child.id }
             })
           }}
-          className={`bg-slate-100 mr-4 rounded-xl h-12 w-16 justify-center items-center`}
+          onLongPress={ () => {
+            console.log("LONG PRESS: ", child.id);
+            setDeleteHold(child.id)
+          }}
+          className="flex flex-row justify-left items-center w-full px-5 rounded-xl"
         >
-          <Text className={`text-emerald-600 font-psemibold text-lg mt-1`}>
-            View
-          </Text>
+          <View
+            className="bg-emerald-700 w-12 h-12 rounded-full"
+          >
+
+          </View>
+          <View className="my-5 ml-3">
+            <Text className="text-2xl ml-2 text-slate-50 text-semibold font-psemibold">{child.first_name} {child.last_name}</Text>
+          </View>
         </TouchableOpacity>
       </View>
     )
@@ -70,7 +78,7 @@ const Children = () => {
           }}
         >
           <View className="bg-sky-600 w-16 h-16 mb-5 mr-5 rounded-full flex flex-row justify-center items-center drop-shadow-2xl shadow-2xl">
-            <Text className="text-slate-100 font-bold text-6xl mt-2">+</Text>
+            <Text className="text-slate-100 font-regular text-6xl mt-2">+</Text>
           </View>
         </TouchableOpacity>
       </View>

@@ -14,16 +14,10 @@ export default function App() {
     return <Redirect href="/home" />
   }
   return (
-    <SafeAreaView className="bg-sky-500 h-full">
+    <SafeAreaView className="bg-sky-600 h-full">
       <ScrollView contentContainerStyle={{ height: '100%'}}>
         <View className='w-full justify-center items-center min-h-[85vh] px-4'>
-          <Text className="text-6xl text-white font-bold text-center">YUGTO</Text>
-
-          <View className="relative mt-10"> 
-            <Text className="text-3xl text-white font-bold text-center">
-              Mapapanatag ka sa Yugto
-            </Text>
-          </View>
+          <Text className="text-6xl text-slate-50 mb-8 font-bold text-center font-roboto">Yugto</Text>
 
           <CustomButton 
             title="Sign In"
@@ -32,7 +26,7 @@ export default function App() {
           />
 
           <CustomButton 
-            title="Register"
+            title="Sign Up"
             handlePress={ () => router.push('/sign-up')}
             containerStyles="w-full mt-7"
           />

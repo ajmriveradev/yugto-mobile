@@ -41,7 +41,7 @@ const SignIn = () => {
   }
 
   return (
-    <SafeAreaView className="bg-sky-500 h-full">
+    <SafeAreaView className="bg-sky-600 h-full">
       <ScrollView>
         <View className="w-full justify-center min-h-[90vh] px-4 my-6">
           <Text className="text-3xl text-white text-bold mt-10 font-pbold text-center">Yugto!</Text>

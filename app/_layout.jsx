@@ -51,6 +51,15 @@ const RootLayout = () => {
         <Stack.Screen name="child/create" options={{
           headerShown: false,
         }}/>
+        <Stack.Screen name="consultations/[id]" options={{
+          headerShown: false,
+        }}/>
+        <Stack.Screen name="vaccinations/[id]" options={{
+          headerShown: false,
+        }}/>
+        <Stack.Screen name="+not-found" options={{
+          headerShown: false,
+        }}/>
       </Stack>
     </GlobalProvider>
   )
